@@ -1,4 +1,14 @@
-img {
-  max-width: 100%;
-  display: block;
+@import "../../../variables.scss";
+.logo-block {
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+.cart-block {
+  i {
+    font-size: 25px;
+    color: $color-orange;
+  }
 }
