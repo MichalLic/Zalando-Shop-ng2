@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+.product-box {
+  padding: 20px 0;
+
+  &:after{
+    content: '';
+    width: 90%;
+    left: 5%;
+    bottom: 0;
+    position: absolute;
+    border-bottom: 1px solid $color-orange;
+  }
+
+  h4 {
+    padding-bottom: 15px;
+  }
+  a {
+    display: block;
+    transition: .3s;
+  }
+  img {
+    max-width: 70%;
+  }
+}
+

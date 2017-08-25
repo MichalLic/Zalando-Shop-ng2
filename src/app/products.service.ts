@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -9,7 +9,10 @@ export class ProductsService {
   }
 
   getProducts() {
-    return this.http.get('https://api.zalando.com/articles')
+    const headers = new Headers({'Accept-Language': 'en'});
+    const options = new RequestOptions({headers: headers});
+    return this.http.get('https://api.zalando.com/articles', options
+    )
       .map(
         (response: Response) => {
           // console.log(response);

@@ -8,17 +8,19 @@ import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app.routing.module';
 import {ProductsComponent} from './products/products.component';
 import {ProductsService} from './products.service';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    SharedModule,
     CoreModule
   ],
   providers: [ProductsService],
