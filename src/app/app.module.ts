@@ -6,14 +6,13 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app.routing.module';
-import {ProductsComponent} from './products/products.component';
 import {ProductsService} from './products.service';
 import {SharedModule} from './shared/shared.module';
+import {ProductModule} from './products/products.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +20,8 @@ import {SharedModule} from './shared/shared.module';
     HttpModule,
     AppRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    ProductModule
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]
