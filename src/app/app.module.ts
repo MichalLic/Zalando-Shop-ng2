@@ -21,7 +21,7 @@ import {ProductModule} from './products/products.module';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    ProductModule
+    ProductModule,
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]
