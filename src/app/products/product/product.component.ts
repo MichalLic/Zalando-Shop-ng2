@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {ProductsService} from '../../products.service';
 import {Subscription} from 'rxjs/Subscription';
+import {OwlCarousel} from 'ng2-owl-carousel';
 
 @Component({
   selector: 'app-product',
@@ -9,6 +10,8 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
+  @ViewChild('owlElement') owlElement: OwlCarousel;
+
   item;
   productId;
   subscription: Subscription;
@@ -19,18 +22,19 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.route.params
-      .subscribe(
-        (params: Params) => {
-          console.log(params);
-          this.productId = params;
-          console.log(this.productId.id);
-        }
-      );
+    .subscribe(
+      (params: Params) => {
+        console.log(params);
+        this.productId = params;
+        console.log(this.productId.id);
+      }
+    );
     this.productsService.getProducts()
       .subscribe(
         (data) => {
           console.log(data.content[this.productId.id]);
           this.item = data.content[this.productId.id];
+          this.owlElement.refresh();
         }
       );
   }
