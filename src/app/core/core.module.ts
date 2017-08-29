@@ -3,11 +3,16 @@ import {HeaderComponent} from './header/header.component';
 import {CommonModule} from '@angular/common';
 import {FooterComponent} from './footer/footer.component';
 import {OwlModule} from 'ng2-owl-carousel';
+import {AppRoutingModule} from '../app.routing.module';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
-    OwlModule
+    OwlModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent,

@@ -6,9 +6,9 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app.routing.module';
-import {ProductsService} from './products.service';
 import {SharedModule} from './shared/shared.module';
 import {ProductModule} from './products/products.module';
+import {CartModule} from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,9 @@ import {ProductModule} from './products/products.module';
     SharedModule,
     CoreModule,
     ProductModule,
+    CartModule
   ],
-  providers: [ProductsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
