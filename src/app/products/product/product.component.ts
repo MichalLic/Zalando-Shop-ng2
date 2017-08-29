@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {ProductsService} from '../../products.service';
 import {Subscription} from 'rxjs/Subscription';
 import {OwlCarousel} from 'ng2-owl-carousel';
+import {ProductDetail} from '../../shared/productDetail.model';
 
 @Component({
   selector: 'app-product',
@@ -11,8 +12,12 @@ import {OwlCarousel} from 'ng2-owl-carousel';
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('owlElement') owlElement: OwlCarousel;
-
+  productDetail: ProductDetail;
   item;
+  product = {
+    size: '',
+    quantity: 1,
+  };
   productId;
   subscription: Subscription;
 
@@ -22,13 +27,13 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.route.params
-    .subscribe(
-      (params: Params) => {
-        console.log(params);
-        this.productId = params;
-        console.log(this.productId.id);
-      }
-    );
+      .subscribe(
+        (params: Params) => {
+          console.log(params);
+          this.productId = params;
+          console.log(this.productId.id);
+        }
+      );
     this.productsService.getProducts()
       .subscribe(
         (data) => {
@@ -37,6 +42,18 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.owlElement.refresh();
         }
       );
+  }
+
+  onSubmit(form) {
+    console.log(form.value);
+    this.productDetail = {
+      name: this.item.name,
+      size: this.item.units[0].size || this.product.size,
+      price: this.item.units[0].price.value,
+      quantity: this.product.quantity,
+      url: this.item.media.images[0].thumbnailHdUrl
+    };
+    console.log(this.productDetail);
   }
 
   ngOnDestroy() {
