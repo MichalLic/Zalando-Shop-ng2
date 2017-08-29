@@ -38,12 +38,13 @@
     </div>
     <div class="col-md-6 col-xs-12 text-center">
       <owl-carousel #owlElement
-                    [options]="{items: 1, dots: false, navigation: true, autoplay: true}"
-                    [items]="images"
-                    [carouselClasses]="['owl-theme', 'row', 'sliding']">
-        <div class="item col-xs-12" *ngFor="let img of item?.media.images">
-          <img src="{{img.mediumHdUrl}}" alt="">
-        </div>
+                    class="product-carousel"
+                    [options]="{items: 1, dots: true, nav: true, autoplay: true, loop: true}"
+      [items]="images"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item col-xs-12" *ngFor="let img of item?.media.images">
+        <img src="{{img.mediumHdUrl}}" alt="">
+      </div>
       </owl-carousel>
     </div>
   </div>
