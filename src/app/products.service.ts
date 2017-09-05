@@ -7,7 +7,9 @@ import {ProductDetail} from './shared/productDetail.model';
 @Injectable()
 export class ProductsService {
   public API_ENDPOINT = 'https://api.zalando.com/articles';
-  productObject = new Subject<ProductDetail>();
+  public FIREBASE_ENDPOINT = 'https://zalandoshop-ng2.firebaseio.com/products.json';
+  productObject = new Subject();
+  products = [];
 
   constructor(private http: Http) {
   }
@@ -23,5 +25,20 @@ export class ProductsService {
           return response.json();
         }
       );
+  }
+
+  addProduct(product: ProductDetail) {
+    this.products.push(product);
+    // this.productObject.next(this.products);
+    this.putProducts()
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+  }
+
+  putProducts() {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.put('https://zalandoshop-ng2.firebaseio.com/products.json', this.products, {headers: headers});
   }
 }

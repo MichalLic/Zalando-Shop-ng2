@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {ProductsService} from '../../products.service';
 import {Subscription} from 'rxjs/Subscription';
@@ -19,7 +19,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     quantity: 1,
   };
   productId;
-  subscription: Subscription;
+  private subscription: Subscription;
+  private productSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) {
@@ -31,10 +32,9 @@ export class ProductComponent implements OnInit, OnDestroy {
         (params: Params) => {
           console.log(params);
           this.productId = params;
-          console.log(this.productId.id);
         }
       );
-    this.productsService.getProducts()
+    this.productSubscription = this.productsService.getProducts()
       .subscribe(
         (data) => {
           console.log(data.content[this.productId.id]);
@@ -45,23 +45,28 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form) {
-    console.log(form.value);
-    this.productDetail = {
+    this.createProduct();
+    this.storageProducts();
+    console.log(this.productDetail);
+  }
+
+  createProduct() {
+    return this.productDetail = {
       name: this.item.name,
       size: this.item.units[0].size || this.product.size,
       price: this.item.units[0].price.value,
       quantity: this.product.quantity,
       url: this.item.media.images[0].thumbnailHdUrl
     };
-    console.log(this.productDetail);
   }
 
-  onSave() {
-    this.productsService.productObject.next(this.productDetail);
+  storageProducts() {
+    this.productsService.addProduct(this.productDetail);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.productSubscription.unsubscribe();
   }
 
 

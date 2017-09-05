@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {FooterComponent} from './footer/footer.component';
 import {OwlModule} from 'ng2-owl-carousel';
 import {AppRoutingModule} from '../app.routing.module';
+import {ProductsService} from '../products.service';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,6 +19,9 @@ import {AppRoutingModule} from '../app.routing.module';
     HeaderComponent,
     FooterComponent,
     OwlModule
+  ],
+  providers: [
+    ProductsService
   ]
 })
 
