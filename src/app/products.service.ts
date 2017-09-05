@@ -9,11 +9,14 @@ export class ProductsService {
   public API_ENDPOINT = 'https://api.zalando.com/articles';
   public FIREBASE_ENDPOINT = 'https://zalandoshop-ng2.firebaseio.com/products.json';
   productObject = new Subject();
-  products = [];
 
   constructor(private http: Http) {
   }
 
+  /**
+   * get products from zalando api
+   * @returns {Observable<R>}
+   */
   getProducts() {
     const headers = new Headers({'Accept-Language': 'en'});
     const options = new RequestOptions({headers: headers});
@@ -27,18 +30,24 @@ export class ProductsService {
       );
   }
 
-  addProduct(product: ProductDetail) {
-    this.products.push(product);
-    // this.productObject.next(this.products);
-    this.putProducts()
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+  /**
+   * put product as json to firebase database
+   * @param products
+   * @returns {Observable<Response>}
+   */
+  putProducts(products) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.put('https://zalandoshop-ng2.firebaseio.com/products.json', products, {headers: headers});
   }
 
-  putProducts() {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.put('https://zalandoshop-ng2.firebaseio.com/products.json', this.products, {headers: headers});
+  /**
+   * get value ( products ) from firebase database (if they are)
+   * @returns {Observable<R>}
+   */
+  getOrderedProducts() {
+    return this.http.get(this.FIREBASE_ENDPOINT)
+      .map(
+        (response: Response) => response.json()
+      );
   }
 }

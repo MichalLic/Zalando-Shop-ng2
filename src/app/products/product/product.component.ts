@@ -12,15 +12,17 @@ import {ProductDetail} from '../../shared/productDetail.model';
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('owlElement') owlElement: OwlCarousel;
-  productDetail: ProductDetail;
+  orderedProduct: ProductDetail;
   item;
   product = {
     size: '',
     quantity: 1,
   };
   productId;
+  products = [];
   private subscription: Subscription;
   private productSubscription: Subscription;
+  private orderedProductSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) {
@@ -42,16 +44,25 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.owlElement.refresh();
         }
       );
+
+    /**
+     * if 'cart' isnt has any products it still remains empty array
+     */
+    this.orderedProductSubscription = this.productsService.getOrderedProducts()
+      .subscribe(
+        (data) => this.products = data || []
+      );
   }
 
-  onSubmit(form) {
+  onSubmit(form, event) {
+    event.preventDefault();
     this.createProduct();
+    this.addProduct();
     this.storageProducts();
-    console.log(this.productDetail);
   }
 
   createProduct() {
-    return this.productDetail = {
+    this.orderedProduct = {
       name: this.item.name,
       size: this.item.units[0].size || this.product.size,
       price: this.item.units[0].price.value,
@@ -60,13 +71,29 @@ export class ProductComponent implements OnInit, OnDestroy {
     };
   }
 
+  addProduct() {
+    // if (this.products) {
+    //   this.products.map(
+    //     (data) => console.log(data)
+    //   );
+    // }
+    console.log(this.products);
+    this.products.push(this.orderedProduct);
+    console.log(this.products);
+  }
+
   storageProducts() {
-    this.productsService.addProduct(this.productDetail);
+    this.productsService.putProducts(this.products)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.productSubscription.unsubscribe();
+    this.orderedProductSubscription.unsubscribe();
   }
 
 
