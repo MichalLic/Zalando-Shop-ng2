@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../products.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,8 @@ export class CartComponent implements OnInit {
   productsCart;
   totalPrice: number;
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -32,7 +34,6 @@ export class CartComponent implements OnInit {
     this.productsCart.map(
       (item) => {
         this.totalPrice += item.quantity * item.price;
-        console.log(this.totalPrice);
       }
     );
   }
@@ -50,5 +51,9 @@ export class CartComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+
+  navTo() {
+    this.router.navigate(['/form']);
   }
 }

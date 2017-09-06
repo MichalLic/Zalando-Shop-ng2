@@ -13,11 +13,11 @@
         <img src="{{product.url}}" alt="">
       </div>
       <div class="col-xs-2">
-        <button class="btn btn-danger btn-xs" (click)="removeProduct(i)">Remove {{i}}</button>
+        <button class="btn btn-danger btn-xs" (click)="removeProduct(i)">Remove</button>
       </div>
     </div>
     <div class="col-xs-12 text-center"><p>Total: {{totalPrice | currency:'USD':true:'1.2-2'}}</p>
-      <button class="btn btn-primary text-center btn-order">Order</button>
+      <button class="btn btn-primary text-center btn-order" (click)="navTo()">Order</button>
     </div>
   </div>
 </div>

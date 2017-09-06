@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form role="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group col-xs-5">
+          <label for="userName">Name*:</label>
+          <input
+            type="text"
+            name="name"
+            ngModel
+            id="userName"
+            class="form-control"
+            #userName="ngModel"
+            required>
+          <span class="label label-danger" *ngIf="!userName.valid && userName.dirty">Please enter your name!</span>
+        </div>
+        <div class="form-group col-xs-7">
+          <label for="userLastName">Last name*:</label>
+          <input
+            type="text"
+            name="userLastName"
+            ngModel
+            id="userLastName"
+            class="form-control"
+            required
+            #userLastName="ngModel"
+          >
+          <span class="label label-danger" *ngIf="!userLastName.valid && userLastName.dirty">Please enter your last name!</span>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="userEmail">E-mail*:</label>
+          <input
+            type="email"
+            name="userEmail"
+            ngModel
+            id="userEmail"
+            class="form-control"
+            #email="ngModel"
+            required>
+          <span class="label label-danger" *ngIf="!email.valid && email.dirty">Please enter your last name!</span>
+        </div>
+        <div class="form-group col-xs-5">
+          <label for="userStreet">Street*:</label>
+          <input
+            type="text"
+            name="userStreet"
+            ngModel
+            id="userStreet"
+            class="form-control"
+            required
+          #userStreet="ngModel">
+          <span class="label label-danger" *ngIf="!userStreet.valid && userStreet.dirty">Please complete this field!</span>
+        </div>
+        <div class="form-group col-xs-7">
+          <label for="userCity">City*:</label>
+          <input
+            type="text"
+            name="userCity"
+            ngModel
+            id="userCity"
+            class="form-control"
+            required
+          #userCity="ngModel">
+          <span class="label label-danger" *ngIf="!userCity.valid && userCity.dirty">Please complete this field!</span>
+        </div>
+        <div class="form-group col-xs-7">
+          <label for="userPostCode">Post-code*:</label>
+          <input
+            type="text"
+            name="userPostCode"
+            ngModel
+            id="userPostCode"
+            class="form-control"
+            required
+            #userPostCode="ngModel">
+          <span class="label label-danger" *ngIf="!userPostCode.valid && userPostCode.dirty">Please complete this field!</span>
+        </div>
+        <div class="form-group col-xs-7">
+          <label for="userPhone">Phone:</label>
+          <input
+            type="text"
+            name="userPhone"
+            ngModel
+            id="userPhone"
+            class="form-control">
+        </div>
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-warning" [disabled]="!f.valid">Buy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -75,11 +75,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addProduct() {
     if (this.products.length === 0) {
-      console.log('był pusty!!!');
       this.products.push(this.orderedProduct);
     } else {
       console.log(this.orderedProduct);
-      console.log(this.addNewProduct);
       this.products.map(item => {
           if (item.name === this.orderedProduct.name && item.size === this.orderedProduct.size) {
             this.addNewProduct = false;
@@ -91,7 +89,6 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.products.push(this.orderedProduct);
       }
     }
-    console.log(this.products);
   }
 
   /**

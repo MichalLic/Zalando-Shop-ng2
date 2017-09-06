@@ -9,6 +9,7 @@ import {AppRoutingModule} from './app.routing.module';
 import {SharedModule} from './shared/shared.module';
 import {ProductModule} from './products/products.module';
 import {CartModule} from './cart/cart.module';
+import {UserModule} from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {CartModule} from './cart/cart.module';
     SharedModule,
     CoreModule,
     ProductModule,
-    CartModule
+    CartModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
