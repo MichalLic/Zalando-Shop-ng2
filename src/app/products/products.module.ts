@@ -5,6 +5,8 @@ import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from '../app.routing.module';
 import {CoreModule} from '../core/core.module';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule ({
   declarations: [
@@ -15,7 +17,9 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     AppRoutingModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ]
 })
 export class ProductModule {}
