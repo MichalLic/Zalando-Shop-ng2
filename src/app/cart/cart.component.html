@@ -5,11 +5,16 @@
         <div>Name: <b>{{product.name}}</b></div>
         <div>Price: <b>{{product.price | currency:'USD':true:'1.2-2'}} </b></div>
         <div>Quantity: <b>{{product.quantity}} </b></div>
-        <div>Total: <b>{{product.quantity * product.price | currency:'USD':true:'1.2-2'}} </b></div>
+        <div>Total: <b>{{product.quantity * product.price | currency:'USD':true:'1.2-2'}}
+        </b></div>
+        <a routerLink="/product/{{product.id}}">Check product detail</a>
       </div>
       <div class="col-xs-3">
         <img src="{{product.url}}" alt="">
       </div>
+    </div>
+    <div class="col-xs-12 text-center"><p>Total: {{totalPrice | currency:'USD':true:'1.2-2'}}</p>
+      <button class="btn btn-primary text-center">Order</button>
     </div>
   </div>
 </div>

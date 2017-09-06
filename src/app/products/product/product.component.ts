@@ -68,7 +68,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       size: this.product.size || this.item.units[0].size,
       price: this.item.units[0].price.value,
       quantity: this.product.quantity,
-      url: this.item.media.images[0].thumbnailHdUrl
+      url: this.item.media.images[0].thumbnailHdUrl,
+      id: +this.productId.id,
     };
   }
 
@@ -93,6 +94,9 @@ export class ProductComponent implements OnInit, OnDestroy {
     console.log(this.products);
   }
 
+  /**
+   * put product as json to firebase database
+   */
   storageProducts() {
     this.productsService.putProducts(this.products)
       .subscribe(

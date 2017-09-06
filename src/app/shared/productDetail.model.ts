@@ -3,6 +3,7 @@ export class ProductDetail {
               public size: string,
               public price: number,
               public quantity: number,
-              public url: string) {
+              public url: string,
+              public id: number) {
   }
 }
