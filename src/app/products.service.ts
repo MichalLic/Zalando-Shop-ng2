@@ -35,7 +35,7 @@ export class ProductsService {
    */
   putProducts(products) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.put('https://zalandoshop-ng2.firebaseio.com/products.json', products, {headers: headers});
+    return this.http.put(this.FIREBASE_ENDPOINT, products, {headers: headers});
   }
 
   /**

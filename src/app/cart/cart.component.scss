@@ -2,6 +2,8 @@
 .product-cart {
   position: relative;
   padding-bottom: 20px;
+  display: flex;
+  align-items: center;
 
   &:after {
     content: '';
@@ -12,7 +14,7 @@
     border-bottom: 1px solid $color-orange;
   }
 }
-button {
+button.btn-order {
   margin: 15px auto;
   padding: 10px 40px;
   display: block;
