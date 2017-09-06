@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   };
   productId;
   products = [];
+  addNewProduct = true;
   private subscription: Subscription;
   private productSubscription: Subscription;
   private orderedProductSubscription: Subscription;
@@ -64,7 +65,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   createProduct() {
     this.orderedProduct = {
       name: this.item.name,
-      size: this.item.units[0].size || this.product.size,
+      size: this.product.size || this.item.units[0].size,
       price: this.item.units[0].price.value,
       quantity: this.product.quantity,
       url: this.item.media.images[0].thumbnailHdUrl
@@ -72,13 +73,23 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   addProduct() {
-    // if (this.products) {
-    //   this.products.map(
-    //     (data) => console.log(data)
-    //   );
-    // }
-    console.log(this.products);
-    this.products.push(this.orderedProduct);
+    if (this.products.length === 0) {
+      console.log('był pusty!!!');
+      this.products.push(this.orderedProduct);
+    } else {
+      console.log(this.orderedProduct);
+      console.log(this.addNewProduct);
+      this.products.map(item => {
+          if (item.name === this.orderedProduct.name && item.size === this.orderedProduct.size) {
+            this.addNewProduct = false;
+            return item.quantity = item.quantity + this.orderedProduct.quantity;
+          }
+        }
+      );
+      if (this.addNewProduct) {
+        this.products.push(this.orderedProduct);
+      }
+    }
     console.log(this.products);
   }
 
