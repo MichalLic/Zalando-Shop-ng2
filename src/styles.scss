@@ -6,11 +6,17 @@ app-cart{
   flex: 1;
   padding: 25px 0;
 
+
   @media (min-width: $bp-md)  {
     display: flex;
     align-items: center;
   }
 }
+app-cart{
+  display: flex;
+  align-items: center;
+}
+
 .owl-nav {
   position: absolute;
   top: 50%;

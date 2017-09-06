@@ -7,13 +7,14 @@ import {ProductsService} from '../products.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  productsCart;
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
     this.productsService.getOrderedProducts()
       .subscribe(
-        data => console.log(data)
+        data => this.productsCart = data
       );
 
   }

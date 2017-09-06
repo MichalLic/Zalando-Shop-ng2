@@ -1,3 +1,15 @@
-<p>
-  cart works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="product-cart col-xs-12" *ngFor="let product of productsCart">
+      <div class="col-xs-9">
+        <div>Name: <b>{{product.name}}</b></div>
+        <div>Price: <b>{{product.price | currency:'USD':true:'1.2-2'}} </b></div>
+        <div>Quantity: <b>{{product.quantity}} </b></div>
+        <div>Total: <b>{{product.quantity * product.price | currency:'USD':true:'1.2-2'}} </b></div>
+      </div>
+      <div class="col-xs-3">
+        <img src="{{product.url}}" alt="">
+      </div>
+    </div>
+  </div>
+</div>
