@@ -5,6 +5,7 @@ import {FooterComponent} from './footer/footer.component';
 import {OwlModule} from 'ng2-owl-carousel';
 import {AppRoutingModule} from '../app.routing.module';
 import {ProductsService} from '../products.service';
+import {AuthService} from '../auth/auth.service';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -21,7 +22,8 @@ import {ProductsService} from '../products.service';
     OwlModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    AuthService
   ]
 })
 
