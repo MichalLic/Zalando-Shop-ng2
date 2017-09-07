@@ -30,14 +30,8 @@ export class UserComponent implements OnInit {
       );
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.isOrdered = true;
-    console.log(form.valid);
-    console.log(form.value);
-    console.log('kupione!!!!!');
-    setTimeout(() => {
-      form.reset();
-    }, 2500);
   }
 
   finishOrder() {
@@ -46,7 +40,7 @@ export class UserComponent implements OnInit {
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
-      );;
+      );
   }
 
 }

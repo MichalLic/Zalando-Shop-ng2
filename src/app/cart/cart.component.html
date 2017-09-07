@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row" *ngIf="!emptyCart">
-    <div class="product-cart col-xs-12" *ngFor="let product of productsCart;let i = index">
+  <div @list class="row" *ngIf="!emptyCart">
+    <div @items class="product-cart col-xs-12" *ngFor="let product of productsCart;let i = index">
       <div class="col-xs-7">
         <div>Name: <b>{{product.name}}</b></div>
         <div>Price: <b>{{product.price | currency:'USD':true:'1.2-2'}} </b></div>
