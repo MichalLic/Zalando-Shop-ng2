@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../products.service';
+import {ProductDetail} from '../shared/productDetail.model';
 
 import {
   style,
@@ -46,7 +47,7 @@ const query = (s, a, o = {optional: true}) => q(s, a, o);
   ]
 })
 export class ProductsComponent implements OnInit {
-  products;
+  products: ProductDetail[];
 
   constructor(private productsService: ProductsService) {
   }

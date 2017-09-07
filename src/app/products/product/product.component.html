@@ -5,7 +5,7 @@
       <p>Brand: {{item?.brand.name | uppercase}}</p>
       <p>Season: {{item?.season | lowercase}}</p>
       <p>Price: {{item?.units[0].price.formatted}}</p>
-      <form role="form" #f="ngForm" (ngSubmit)="onSubmit(f, $event)">
+      <form role="form" #f="ngForm" (ngSubmit)="onSubmit($event)">
         <div class="product-sizes form-group col-xs-3">
           <div>
             <label>Sizes:</label>

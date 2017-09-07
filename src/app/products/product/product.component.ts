@@ -55,7 +55,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       );
   }
 
-  onSubmit(form, event) {
+  onSubmit(event) {
     event.preventDefault();
     this.createProduct();
     this.addProduct();
@@ -65,10 +65,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   createProduct() {
     this.orderedProduct = {
       name: this.item.name,
-      size: this.product.size || this.item.units[0].size,
-      price: this.item.units[0].price.value,
+      size: this.product.size || this.item.units[0]['size'],
+      price: this.item.units[0]['price'].value,
       quantity: this.product.quantity,
-      url: this.item.media.images[0].thumbnailHdUrl,
+      url: this.item.media.images[0]['thumbnailHdUrl'],
       id: +this.productId.id,
     };
   }
