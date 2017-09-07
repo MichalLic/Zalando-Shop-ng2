@@ -23,8 +23,7 @@
             id="userLastName"
             class="form-control"
             required
-            #userLastName="ngModel"
-          >
+            #userLastName="ngModel">
           <span class="label label-danger" *ngIf="!userLastName.valid && userLastName.dirty">Please enter your last name!</span>
         </div>
         <div class="form-group col-xs-12">
@@ -37,8 +36,8 @@
             class="form-control"
             #email="ngModel"
             required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-          <span class="label label-danger" *ngIf="!email.valid && email.dirty">Please enter your last name!</span>
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <span class="label label-danger" *ngIf="!email.valid && email.touched">Please enter your e-mail !</span>
         </div>
         <div class="form-group col-md-5 col-xs-12">
           <label for="userStreet">Street*:</label>
@@ -78,7 +77,7 @@
             pattern="[0-9]{2}\-[0-9]{3}"
             placeholder="12-345">
           <span class="label label-danger"
-                *ngIf="!userPostCode.valid && userPostCode.dirty">Please complete this field!</span>
+                *ngIf="!userPostCode.valid && userPostCode.touched">Please complete this field!</span>
         </div>
         <div class="form-group col-md-7 col-xs-12">
           <label for="userPhone">Phone:</label>
