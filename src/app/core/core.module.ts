@@ -6,6 +6,7 @@ import {OwlModule} from 'ng2-owl-carousel';
 import {AppRoutingModule} from '../app.routing.module';
 import {ProductsService} from '../products.service';
 import {AuthService} from '../auth/auth.service';
+import {AuthGuardService} from '../auth/auth-guard.service';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -23,7 +24,8 @@ import {AuthService} from '../auth/auth.service';
   ],
   providers: [
     ProductsService,
-    AuthService
+    AuthService,
+    AuthGuardService
   ]
 })
 

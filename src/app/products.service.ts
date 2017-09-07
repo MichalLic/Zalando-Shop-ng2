@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
-import {ProductDetail} from './shared/productDetail.model';
+import {AuthService} from './auth/auth.service';
 
 @Injectable()
 export class ProductsService {
   public API_ENDPOINT = 'https://api.zalando.com/articles';
   public FIREBASE_ENDPOINT = 'https://zalandoshop-ng2.firebaseio.com/products.json';
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private authService: AuthService) {
   }
 
   /**
@@ -43,7 +44,8 @@ export class ProductsService {
    * @returns {Observable<R>}
    */
   getOrderedProducts() {
-    return this.http.get(this.FIREBASE_ENDPOINT)
+    const token = this.authService.getToken();
+    return this.http.get(this.FIREBASE_ENDPOINT + '?auth=' + token)
       .map(
         (response: Response) => response.json()
       );
@@ -53,7 +55,7 @@ export class ProductsService {
    * remove all products from database after placed order
    * @returns {Observable<Response>}
    */
-  removeOrderedProducts () {
+  removeOrderedProducts() {
     return this.http.delete(this.FIREBASE_ENDPOINT);
   }
 }
