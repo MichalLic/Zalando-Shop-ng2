@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="!isOrdered">
     <div class="col-xs-12">
       <form role="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="form-group col-md-5 col-xs-12">
@@ -7,7 +7,7 @@
           <input
             type="text"
             name="user-name"
-            ngModel
+            [(ngModel)]="user.name"
             id="userName"
             class="form-control"
             #userName="ngModel"
@@ -19,7 +19,7 @@
           <input
             type="text"
             name="user-last-name"
-            ngModel
+            [(ngModel)]="user.lastName"
             id="userLastName"
             class="form-control"
             required
@@ -32,7 +32,7 @@
           <input
             type="email"
             name="user-email"
-            ngModel
+            [(ngModel)]="user.email"
             id="userEmail"
             class="form-control"
             #email="ngModel"
@@ -45,7 +45,7 @@
           <input
             type="text"
             name="user-street"
-            ngModel
+            [(ngModel)]="user.street"
             id="userStreet"
             class="form-control"
             required
@@ -58,7 +58,7 @@
           <input
             type="text"
             name="user-city"
-            ngModel
+            [(ngModel)]="user.city"
             id="userCity"
             class="form-control"
             required
@@ -70,7 +70,7 @@
           <input
             type="text"
             name="user-post-code"
-            ngModel
+            [(ngModel)]="user.postCode"
             id="userPostCode"
             class="form-control"
             required
@@ -93,6 +93,20 @@
           <button type="submit" class="btn btn-warning" [disabled]="!f.valid">Buy</button>
         </div>
       </form>
+    </div>
+  </div>
+  <div *ngIf="isOrdered" class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Your order was placed!</h2>
+      <p>{{user.name | capitalCase}}</p>
+      <p>{{user.lastName | capitalCase}}</p>
+      <p>{{user.street | capitalCase}}</p>
+      <p>{{user.postCode}}</p>
+      <p>{{user.city | capitalCase}}</p>
+      <p>{{user.email}}</p>
+    </div>
+    <div class="col-xs-12">
+      aaa
     </div>
   </div>
 </div>
