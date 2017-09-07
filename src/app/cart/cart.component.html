@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="!emptyCart">
     <div class="product-cart col-xs-12" *ngFor="let product of productsCart;let i = index">
       <div class="col-xs-7">
         <div>Name: <b>{{product.name}}</b></div>
@@ -18,6 +18,11 @@
     </div>
     <div class="col-xs-12 text-center"><p>Total: {{totalPrice | currency:'USD':true:'1.2-2'}}</p>
       <button class="btn btn-primary text-center btn-order" (click)="navTo()">Order</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="emptyCart">
+    <div class="col-xs-12">
+      <h2 class="text-center">Your cart is currently empty</h2>
     </div>
   </div>
 </div>

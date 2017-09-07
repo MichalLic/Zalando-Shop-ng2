@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {CapitalCasePipe} from '../shared/capital-case.pipe';
+import {ProductsService} from '../products.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
-  pipes: [CapitalCasePipe]
 })
 export class UserComponent implements OnInit {
   user = {
@@ -17,20 +17,36 @@ export class UserComponent implements OnInit {
     postCode: '',
   };
   isOrdered = false;
-  constructor() {
+  orderedProducts;
+
+  constructor(private productsService: ProductsService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.productsService.getOrderedProducts()
+      .subscribe(
+        data => this.orderedProducts = data
+      );
   }
 
-  onSubmit(f) {
+  onSubmit(form) {
     this.isOrdered = true;
-    console.log(f.valid);
-    console.log(f.value);
+    console.log(form.valid);
+    console.log(form.value);
     console.log('kupione!!!!!');
     setTimeout(() => {
-      f.reset();
+      form.reset();
     }, 2500);
+  }
+
+  finishOrder() {
+    this.router.navigate(['/']);
+    this.productsService.removeOrderedProducts()
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );;
   }
 
 }

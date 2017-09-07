@@ -96,8 +96,8 @@
     </div>
   </div>
   <div *ngIf="isOrdered" class="row">
-    <div class="col-xs-12">
-      <h2 class="text-center">Your order was placed!</h2>
+    <h2 class="text-center">Your order was placed!</h2>
+    <div class="user-summary col-xs-12 col-md-6">
       <p>{{user.name | capitalCase}}</p>
       <p>{{user.lastName | capitalCase}}</p>
       <p>{{user.street | capitalCase}}</p>
@@ -105,8 +105,11 @@
       <p>{{user.city | capitalCase}}</p>
       <p>{{user.email}}</p>
     </div>
-    <div class="col-xs-12">
-      aaa
+    <div class="order-summary col-xs-12 col-md-6">
+      <div *ngFor="let orderedProduct of orderedProducts">
+        <p><b>{{orderedProduct.name}}</b>: Quantity - {{orderedProduct.quantity}}</p>
+      </div>
     </div>
+    <button class="btn btn-warning" (click)="finishOrder()">Close</button>
   </div>
 </div>

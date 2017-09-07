@@ -48,4 +48,12 @@ export class ProductsService {
         (response: Response) => response.json()
       );
   }
+
+  /**
+   * remove all products from database after placed order
+   * @returns {Observable<Response>}
+   */
+  removeOrderedProducts () {
+    return this.http.delete(this.FIREBASE_ENDPOINT);
+  }
 }

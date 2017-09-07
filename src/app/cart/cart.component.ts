@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 export class CartComponent implements OnInit {
   productsCart;
   totalPrice: number;
+  emptyCart = true;
 
   constructor(private productsService: ProductsService,
               private router: Router) {
@@ -19,9 +20,12 @@ export class CartComponent implements OnInit {
     this.productsService.getOrderedProducts()
       .subscribe(
         data => {
-          this.productsCart = data;
-          console.log(data);
-          this.totalCartPrice();
+          if (data) {
+            this.productsCart = data;
+            console.log(data);
+            this.totalCartPrice();
+            this.emptyCart = false;
+          }
         }
       );
   }
@@ -51,6 +55,9 @@ export class CartComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+    if (this.productsCart.length === 0) {
+      this.emptyCart = true;
+    }
   }
 
   navTo() {
