@@ -1,17 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductsService} from '../products.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 
 import {
   style,
   animate,
-  animation,
   animateChild,
-  useAnimation,
-  group,
-  sequence,
   transition,
-  state,
   trigger,
   query as q,
   stagger
@@ -46,17 +42,18 @@ const query = (s, a, o = {optional: true}) => q(s, a, o);
     ])
   ]
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   productsCart;
   totalPrice: number;
   emptyCart = true;
+  orderedProductsSubscription: Subscription;
 
   constructor(private productsService: ProductsService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.productsService.getOrderedProducts()
+    this.orderedProductsSubscription = this.productsService.getOrderedProducts()
       .subscribe(
         data => {
           if (data) {
@@ -101,5 +98,9 @@ export class CartComponent implements OnInit {
 
   navTo() {
     this.router.navigate(['/form']);
+  }
+
+  ngOnDestroy() {
+    this.orderedProductsSubscription.unsubscribe();
   }
 }

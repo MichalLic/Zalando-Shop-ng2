@@ -1,17 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductsService} from '../products.service';
 import {ProductDetail} from '../shared/productDetail.model';
+import {Subscription} from 'rxjs/Subscription';
 
 import {
   style,
   animate,
-  animation,
   animateChild,
-  useAnimation,
-  group,
-  sequence,
   transition,
-  state,
   trigger,
   query as q,
   stagger
@@ -46,8 +42,9 @@ const query = (s, a, o = {optional: true}) => q(s, a, o);
     ])
   ]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: ProductDetail[];
+  productsSubscription: Subscription;
 
   constructor(private productsService: ProductsService) {
   }
@@ -61,6 +58,10 @@ export class ProductsComponent implements OnInit {
           console.log(this.products);
         }
       );
+  }
+
+  ngOnDestroy() {
+    this.productsSubscription.unsubscribe();
   }
 
 }

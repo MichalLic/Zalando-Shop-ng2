@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductsService} from '../products.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   user = {
     name: '',
     lastName: '',
@@ -18,13 +19,14 @@ export class UserComponent implements OnInit {
   };
   isOrdered = false;
   orderedProducts;
+  orderedProductsSubscription: Subscription;
 
   constructor(private productsService: ProductsService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.productsService.getOrderedProducts()
+    this.orderedProductsSubscription = this.productsService.getOrderedProducts()
       .subscribe(
         data => this.orderedProducts = data
       );
@@ -41,6 +43,10 @@ export class UserComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+
+  ngOnDestroy() {
+    this.orderedProductsSubscription.unsubscribe();
   }
 
 }
