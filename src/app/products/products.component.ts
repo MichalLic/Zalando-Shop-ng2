@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.productsService.getProducts()
+    this.productsSubscription = this.productsService.getProducts()
       .subscribe(
         (data) => {
           console.log(data);
