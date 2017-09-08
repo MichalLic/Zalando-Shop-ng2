@@ -4,6 +4,7 @@ import {ProductsService} from '../../products.service';
 import {Subscription} from 'rxjs/Subscription';
 import {OwlCarousel} from 'ng2-owl-carousel';
 import {ProductDetail} from '../../shared/productDetail.model';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   private orderedProductSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private productsService: ProductsService) {
+              private productsService: ProductsService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -49,10 +51,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     /**
      * if 'cart' isnt has any products it still remains empty array
      */
-    this.orderedProductSubscription = this.productsService.getOrderedProducts()
-      .subscribe(
-        (data) => this.products = data || []
-      );
+    if (this.authService.isAuthenticated()) {
+      this.orderedProductSubscription = this.productsService.getOrderedProducts()
+        .subscribe(
+          (data) => this.products = data || []
+        );
+    }
   }
 
   onSubmit(event) {
@@ -105,7 +109,9 @@ export class ProductComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.productSubscription.unsubscribe();
-    this.orderedProductSubscription.unsubscribe();
+    if (this.authService.isAuthenticated()) {
+      this.orderedProductSubscription.unsubscribe();
+    }
   }
 
 
