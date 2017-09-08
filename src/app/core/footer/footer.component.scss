@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+footer {
+  background-color:  $color-grey;
+  padding: 20px 0;
+}
+.links-block {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    display: table;
+  }
+}
+
+.icon-list {
+  a {
+    padding: 0 10px;
+  }
+}

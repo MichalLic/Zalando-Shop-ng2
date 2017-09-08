@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+
+header {
+  padding: 20px 0;
+}
+
+.logo-block {
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+.cart-block {
+  i {
+    font-size: 25px;
+    color: $color-orange;
+  }
+}

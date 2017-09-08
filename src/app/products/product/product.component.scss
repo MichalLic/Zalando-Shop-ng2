@@ -1,0 +1,19 @@
+@import "../../../variables";
+owl-carousel {
+  .item {
+    padding: 20px 0;
+    @media (min-width: $bp-md) {
+      padding: 0;
+    }
+
+    img {
+      width: 60%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.product-sizes {
+  padding: 0;
+}

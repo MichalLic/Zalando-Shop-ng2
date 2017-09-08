@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <h4>{{item?.name}}</h4>
+      <p>Brand: {{item?.brand.name | uppercase}}</p>
+      <p>Season: {{item?.season | lowercase}}</p>
+      <p>Price: {{item?.units[0].price.formatted}}</p>
+      <form role="form" #f="ngForm" (ngSubmit)="onSubmit($event)">
+        <div class="product-sizes form-group col-xs-3">
+          <div>
+            <label>Sizes:</label>
+            <select class="form-control"
+                    name="size"
+                    [(ngModel)]="product.size"
+                    required
+            >
+              <option *ngFor="let price of item?.units">
+                {{price.size}}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label>Quantity:</label>
+            <input
+              #quantity
+              type="number"
+              min="1" max="99"
+              class="form-control"
+              name="quantity"
+              required
+              [(ngModel)]="product.quantity">
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <button class="btn btn-primary text-center" type="submit">Order!</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 col-xs-12 text-center">
+      <owl-carousel #owlElement
+                    class="product-carousel"
+                    [options]="{items: 1, dots: true, nav: true, autoplay: true, loop: true}"
+      [items]="images"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item col-xs-12" *ngFor="let img of item?.media.images">
+        <img src="{{img.mediumHdUrl}}" alt="">
+      </div>
+      </owl-carousel>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,38 @@
+@import "../../variables";
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 40px;
+}
+
+.help-statement{
+  color: red;
+}
+
+h2 {
+  padding-bottom:  20px;
+}
+
+.user-summary {
+  position: relative;
+  @media (max-width: $bp-md) {
+    padding-left: 50px;
+    margin-bottom: 30px;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 90%;
+      bottom: -10px;
+      left: 5%;
+      border-bottom: 1px solid #ff6900;
+      right: 5%;
+    }
+  }
+}
+
+.order-summary {
+  @media (max-width: $bp-md) {
+    padding-left: 50px;
+  }
+}

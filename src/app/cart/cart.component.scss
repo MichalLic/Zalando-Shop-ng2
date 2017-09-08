@@ -1,0 +1,21 @@
+@import "../../variables";
+.product-cart {
+  position: relative;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 0;
+    border-bottom: 1px solid $color-orange;
+  }
+}
+button.btn-order {
+  margin: 15px auto;
+  padding: 10px 40px;
+  display: block;
+}

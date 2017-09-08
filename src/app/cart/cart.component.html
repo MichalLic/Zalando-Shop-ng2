@@ -1,0 +1,28 @@
+<div class="container">
+  <div @list class="row" *ngIf="!emptyCart">
+    <div @items class="product-cart col-xs-12" *ngFor="let product of productsCart;let i = index">
+      <div class="col-xs-7">
+        <div>Name: <b>{{product.name}}</b></div>
+        <div>Price: <b>{{product.price | currency:'USD':true:'1.2-2'}} </b></div>
+        <div>Quantity: <b>{{product.quantity}} </b></div>
+        <div>Total: <b>{{product.quantity * product.price | currency:'USD':true:'1.2-2'}}
+        </b></div>
+        <a routerLink="/product/{{product.id}}">Check product detail</a>
+      </div>
+      <div class="col-xs-3">
+        <img src="{{product.url}}" alt="">
+      </div>
+      <div class="col-xs-2">
+        <button class="btn btn-danger btn-xs" (click)="removeProduct(i)">Remove</button>
+      </div>
+    </div>
+    <div class="col-xs-12 text-center"><p>Total: {{totalPrice | currency:'USD':true:'1.2-2'}}</p>
+      <button class="btn btn-primary text-center btn-order" (click)="navTo()">Order</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="emptyCart">
+    <div class="col-xs-12">
+      <h2 class="text-center">Your cart is currently empty</h2>
+    </div>
+  </div>
+</div>

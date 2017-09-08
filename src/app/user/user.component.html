@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row" *ngIf="!isOrdered">
+    <div class="col-xs-12">
+      <form role="form" #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group col-md-5 col-xs-12">
+          <label for="userName">Name*:</label>
+          <input
+            type="text"
+            name="user-name"
+            [(ngModel)]="user.name"
+            id="userName"
+            class="form-control"
+            #userName="ngModel"
+            required>
+          <span class="label label-danger" *ngIf="!userName.valid && userName.dirty">Please enter your name!</span>
+        </div>
+        <div class="form-group col-md-7 col-xs-12">
+          <label for="userLastName">Last name*:</label>
+          <input
+            type="text"
+            name="user-last-name"
+            [(ngModel)]="user.lastName"
+            id="userLastName"
+            class="form-control"
+            required
+            #userLastName="ngModel">
+          <span class="label label-danger" *ngIf="!userLastName.valid && userLastName.dirty">Please enter your last name!</span>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="userEmail">E-mail*:</label>
+          <input
+            type="email"
+            name="user-email"
+            [(ngModel)]="user.email"
+            id="userEmail"
+            class="form-control"
+            #email="ngModel"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <span class="label label-danger" *ngIf="!email.valid && email.touched">Please enter your e-mail !</span>
+        </div>
+        <div class="form-group col-md-5 col-xs-12">
+          <label for="userStreet">Street*:</label>
+          <input
+            type="text"
+            name="user-street"
+            [(ngModel)]="user.street"
+            id="userStreet"
+            class="form-control"
+            required
+            #userStreet="ngModel">
+          <span class="label label-danger"
+                *ngIf="!userStreet.valid && userStreet.dirty">Please complete this field!</span>
+        </div>
+        <div class="form-group col-xs-12 col-md-7">
+          <label for="userCity">City*:</label>
+          <input
+            type="text"
+            name="user-city"
+            [(ngModel)]="user.city"
+            id="userCity"
+            class="form-control"
+            required
+            #userCity="ngModel">
+          <span class="label label-danger" *ngIf="!userCity.valid && userCity.dirty">Please complete this field!</span>
+        </div>
+        <div class="form-group col-md-7 col-xs-12">
+          <label for="userPostCode">Post-code*:</label>
+          <input
+            type="text"
+            name="user-post-code"
+            [(ngModel)]="user.postCode"
+            id="userPostCode"
+            class="form-control"
+            required
+            #userPostCode="ngModel"
+            pattern="[0-9]{2}\-[0-9]{3}"
+            placeholder="12-345">
+          <span class="label label-danger"
+                *ngIf="!userPostCode.valid && userPostCode.touched">Please complete this field!</span>
+        </div>
+        <div class="form-group col-md-7 col-xs-12">
+          <label for="userPhone">Phone:</label>
+          <input
+            type="text"
+            name="user-phone"
+            ngModel
+            id="userPhone"
+            class="form-control">
+        </div>
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-warning" [disabled]="!f.valid">Buy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="isOrdered" class="row">
+    <h2 class="text-center">Your order was placed!</h2>
+    <div class="user-summary col-xs-12 col-md-6">
+      <p>{{user.name | capitalCase}}</p>
+      <p>{{user.lastName | capitalCase}}</p>
+      <p>{{user.street | capitalCase}}</p>
+      <p>{{user.postCode}}</p>
+      <p>{{user.city | capitalCase}}</p>
+      <p>{{user.email}}</p>
+    </div>
+    <div class="order-summary col-xs-12 col-md-6">
+      <div *ngFor="let orderedProduct of orderedProducts">
+        <p><b>{{orderedProduct.name}}</b>: Quantity - {{orderedProduct.quantity}}</p>
+      </div>
+    </div>
+    <button class="btn btn-warning" (click)="finishOrder()">Close</button>
+  </div>
+</div>

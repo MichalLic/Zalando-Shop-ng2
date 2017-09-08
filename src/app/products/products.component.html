@@ -1,0 +1,10 @@
+<section class="products-list container">
+  <div @list class="row">
+    <div @items class="product-box text-center col-xs-12 col-md-4" *ngFor="let product of products; let i = index">
+      <h4>{{product.name}}</h4>
+      <a routerLink="/product/{{i}}" appProductDirective>
+        <img [src]="product.media.images[0].mediumUrl" alt="">
+      </a>
+    </div>
+  </div>
+</section>
