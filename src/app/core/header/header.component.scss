@@ -38,6 +38,7 @@ header {
     justify-content: center;
     position: relative;
     color: $color-orange;
+    cursor: pointer;
     transition: .3s;
 
     &:before,
@@ -64,7 +65,8 @@ header {
       left: calc(50% - 30%);
     }
 
-    &:hover {
+    &:hover,
+    &.active{
       color: $color-white;
       text-decoration: none;
 

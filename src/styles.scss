@@ -1,21 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "variables";
+
 app-products,
 app-product,
 app-cart,
 app-user,
 app-signin,
-app-signup{
+app-signup {
   flex: 1;
   padding: 25px 0;
 
-
-  @media (min-width: $bp-md)  {
+  @media (min-width: $bp-md) {
     display: flex;
     align-items: center;
   }
 }
-app-cart{
+
+app-cart,
+app-signup,
+app-signin {
   display: flex;
   align-items: center;
 }

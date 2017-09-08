@@ -10,9 +10,20 @@
         <a *ngIf="authService.isAuthenticated()" routerLink="/cart" class="pull-right cart-item">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </a>
-        <a *ngIf="authService.isAuthenticated()" (click)="onLogout()" class="pull-right log-item">Logout</a>
-        <a class="log-item" *ngIf="!authService.isAuthenticated()" routerLink="/signup">Register</a>
-        <a class="log-item" *ngIf="!authService.isAuthenticated()" routerLink="/signin">Login</a>
+        <a type="button"
+           (click)="onLogout()"
+           *ngIf="authService.isAuthenticated()"
+           class="pull-right log-item">Logout</a>
+        <a class="log-item"
+           *ngIf="!authService.isAuthenticated()"
+           routerLink="/signup"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Register</a>
+        <a class="log-item"
+           *ngIf="!authService.isAuthenticated()"
+           routerLink="/signin"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Login</a>
       </div>
     </div>
   </div>

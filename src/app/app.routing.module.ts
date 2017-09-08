@@ -6,13 +6,14 @@ import {CartComponent} from './cart/cart.component';
 import {UserComponent} from './user/user.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'products', pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'product/:id', component: ProductComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'form', component: UserComponent},
+  {path: 'cart', component: CartComponent, canActivated: [AuthGuardService]},
+  {path: 'form', component: UserComponent, canActivated: [AuthGuardService]},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent}
 ];
