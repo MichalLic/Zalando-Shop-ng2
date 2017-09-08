@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../auth/auth.service';
+import {Router} from '@angular/router';
+import {ProductsService} from '../../products.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private productsService: ProductsService) {
+  }
 
   ngOnInit() {
+  }
+
+  onLogout() {
+    this.productsService.removeOrderedProducts()
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    this.router.navigate(['/']);
+    this.authService.logout();
+    console.log(this.authService.isAuthenticated());
   }
 
 }

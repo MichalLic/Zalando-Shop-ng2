@@ -6,6 +6,7 @@ import {CartComponent} from './cart/cart.component';
 import {UserComponent} from './user/user.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'products', pathMatch: 'full'},
