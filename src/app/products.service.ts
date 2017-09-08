@@ -57,6 +57,7 @@ export class ProductsService {
    * @returns {Observable<Response>}
    */
   removeOrderedProducts() {
-    return this.http.delete(this.FIREBASE_ENDPOINT);
+    const token = this.authService.getToken();
+    return this.http.delete(this.FIREBASE_ENDPOINT + '?auth=' + token);
   }
 }
