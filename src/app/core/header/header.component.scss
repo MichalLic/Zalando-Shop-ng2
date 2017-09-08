@@ -19,17 +19,21 @@ header {
 .cart-block {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
-  i {
-    font-size: 25px;
-    color: $color-orange;
+  .cart-item {
+    padding-right: 20px;
+
+    i {
+      font-size: 25px;
+      color: $color-orange;
+    }
   }
 
   .log-item {
     padding: 5px 10px;
     margin: 0 5px;
     display: flex;
-    flex: 1;
     align-items: center;
     justify-content: center;
     position: relative;

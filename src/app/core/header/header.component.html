@@ -7,9 +7,10 @@
         </a>
       </div>
       <div class="cart-block col-xs-4 col-xs-offset-2">
-        <a *ngIf="authService.isAuthenticated()" routerLink="/cart" class="pull-right">
+        <a *ngIf="authService.isAuthenticated()" routerLink="/cart" class="pull-right cart-item">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </a>
+        <a *ngIf="authService.isAuthenticated()" (click)="onLogout()" class="pull-right log-item">Logout</a>
         <a class="log-item" *ngIf="!authService.isAuthenticated()" routerLink="/signup">Register</a>
         <a class="log-item" *ngIf="!authService.isAuthenticated()" routerLink="/signin">Login</a>
       </div>
