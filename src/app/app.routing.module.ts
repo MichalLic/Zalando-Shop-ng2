@@ -12,8 +12,8 @@ const appRoutes: Routes = [
   {path: '', redirectTo: 'products', pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'product/:id', component: ProductComponent},
-  {path: 'cart', component: CartComponent, canActivated: [AuthGuardService]},
-  {path: 'form', component: UserComponent, canActivated: [AuthGuardService]},
+  {path: 'cart', component: CartComponent},
+  {path: 'form', component: UserComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent}
 ];
