@@ -18,6 +18,8 @@ header {
 
 .cart-block {
   display: flex;
+  justify-content: flex-end;
+
   i {
     font-size: 25px;
     color: $color-orange;
