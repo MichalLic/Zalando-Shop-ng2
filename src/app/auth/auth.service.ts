@@ -6,14 +6,23 @@ import {Subject} from 'rxjs/Subject';
 export class AuthService {
   token: string;
   isLogged = new Subject();
+  isUsed = new Subject();
 
   constructor() {
   }
 
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(
+        response => {
+          this.isUsed.next('Signed up correctly');
+        }
+      )
       .catch(
-        error => console.log(error)
+        error => {
+          console.log(error);
+          this.isUsed.next(error.message);
+        }
       );
   }
 
