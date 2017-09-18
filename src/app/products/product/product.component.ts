@@ -4,7 +4,7 @@ import {ProductsService} from '../../products.service';
 import {Subscription} from 'rxjs/Subscription';
 import {OwlCarousel} from 'ng2-owl-carousel';
 import {ProductDetail} from '../../shared/productDetail.model';
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-product',

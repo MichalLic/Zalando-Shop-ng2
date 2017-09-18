@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
-    this.router.navigate(['/']);
     this.authService.logout();
+    this.router.navigate(['/']);
     console.log(this.authService.isAuthenticated());
   }
 
