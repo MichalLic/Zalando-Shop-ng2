@@ -9,6 +9,7 @@
         <div class="form-group">
           <label for="password">password</label>
           <input type="password" id="password" name="password" ngModel class="form-control">
+          <span *ngIf="!isLogged" class="label label-danger">Incorrect email or password!</span>
         </div>
         <button class="btn btn-primary" type="submit">Sign in</button>
       </form>

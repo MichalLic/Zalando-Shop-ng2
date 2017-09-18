@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
   token: string;
+  isLogged = new Subject();
 
   constructor() {
   }
@@ -19,14 +21,19 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
+          this.isLogged.next(true);
           firebase.auth().currentUser.getToken()
             .then(
               (token: string) => this.token = token
             );
+
         }
       )
       .catch(
-        error => console.log(error)
+        error => {
+          this.isLogged.next(false);
+          console.log(error);
+        }
       );
   }
 

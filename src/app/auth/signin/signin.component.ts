@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-signin',
@@ -9,6 +10,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  isLogged = true;
+  isLoggedSubscription: Subscription;
 
   constructor(private authService: AuthService,
               private router: Router) {
@@ -21,7 +24,15 @@ export class SigninComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.authService.signinUser(email, password);
-    this.router.navigate(['/']);
+    this.isLoggedSubscription = this.authService.isLogged.subscribe(
+      (data) => {
+        this.isLogged = data;
+        console.log(this.isLogged);
+        if (this.isLogged) {
+          this.router.navigate(['/']);
+        }
+      }
+    );
   }
 
 }
