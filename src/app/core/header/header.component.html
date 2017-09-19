@@ -9,6 +9,7 @@
       <div class="cart-block col-xs-4 col-xs-offset-2">
         <a *ngIf="authService.isAuthenticated()" routerLink="/cart" class="pull-right cart-item">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <span *ngIf="amount !== 0" class="badge">{{amount}}</span>
         </a>
         <a type="button"
            (click)="onLogout()"

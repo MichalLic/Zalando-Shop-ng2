@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {AuthService} from './auth/auth.service';
@@ -7,6 +7,7 @@ import {AuthService} from './auth/auth.service';
 export class ProductsService {
   public API_ENDPOINT = 'https://api.zalando.com/articles';
   public FIREBASE_ENDPOINT = 'https://zalandoshop-ng2.firebaseio.com/products.json';
+  productsAmount = new EventEmitter();
 
   constructor(private http: Http,
               private authService: AuthService) {
@@ -59,5 +60,9 @@ export class ProductsService {
   removeOrderedProducts() {
     const token = this.authService.getToken();
     return this.http.delete(this.FIREBASE_ENDPOINT + '?auth=' + token);
+  }
+
+  getProductsAmount(data) {
+    this.productsAmount.emit(data);
   }
 }

@@ -9,12 +9,21 @@ import {ProductsService} from '../../products.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  amount: number;
+
   constructor(private authService: AuthService,
               private router: Router,
               private productsService: ProductsService) {
   }
 
   ngOnInit() {
+    this.productsService.productsAmount
+      .subscribe(
+        data => {
+          console.log(data);
+          this.amount = +data.length;
+        }
+      );
   }
 
   onLogout() {

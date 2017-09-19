@@ -22,7 +22,15 @@ header {
   align-items: center;
 
   .cart-item {
-    padding-right: 20px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .badge {
+      background-color: $color-orange-light;
+      margin-left: 5px;
+    }
 
     i {
       font-size: 25px;
@@ -66,7 +74,7 @@ header {
     }
 
     &:hover,
-    &.active{
+    &.active {
       color: $color-white;
       text-decoration: none;
 

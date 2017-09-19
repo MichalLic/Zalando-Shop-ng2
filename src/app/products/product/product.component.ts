@@ -80,6 +80,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   addProduct() {
     if (this.products.length === 0) {
       this.products.push(this.orderedProduct);
+      this.setProductsAmount(this.products);
     } else {
       console.log(this.orderedProduct);
       this.products.map(item => {
@@ -91,6 +92,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       );
       if (this.addNewProduct) {
         this.products.push(this.orderedProduct);
+        this.setProductsAmount(this.products);
       }
     }
   }
@@ -112,6 +114,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.authService.isAuthenticated()) {
       this.orderedProductSubscription.unsubscribe();
     }
+  }
+
+  setProductsAmount(data) {
+    this.productsService.getProductsAmount(data);
   }
 
 

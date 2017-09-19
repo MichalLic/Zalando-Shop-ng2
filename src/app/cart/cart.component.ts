@@ -85,6 +85,7 @@ export class CartComponent implements OnInit, OnDestroy {
   removeProduct(index) {
     this.productsCart.splice(index, 1);
     console.log(this.productsCart);
+    this.productsService.getProductsAmount(this.productsCart);
     this.totalCartPrice();
     this.productsService.putProducts(this.productsCart)
       .subscribe(
