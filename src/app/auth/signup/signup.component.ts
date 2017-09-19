@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     this.authService.signupUser(email, password);
     this.authService.isUsed.subscribe(
-      (data) => {
+      (data: string) => {
         this.message = data;
         if (this.message === 'Signed up correctly') {
           this.modalActive = true;

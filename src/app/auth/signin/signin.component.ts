@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  isLogged = true;
+  isLogged: boolean = true;
   isLoggedSubscription: Subscription;
 
   constructor(private authService: AuthService,
@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
     const password = form.value.password;
     this.authService.signinUser(email, password);
     this.isLoggedSubscription = this.authService.isLogged.subscribe(
-      (data) => {
+      (data: boolean) => {
         this.isLogged = data;
         console.log(this.isLogged);
         if (this.isLogged) {
