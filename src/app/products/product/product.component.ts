@@ -22,6 +22,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   productId;
   products = [];
   addNewProduct = true;
+  success = false;
   private subscription: Subscription;
   private productSubscription: Subscription;
   private orderedProductSubscription: Subscription;
@@ -95,6 +96,13 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.setProductsAmount(this.products);
       }
     }
+    this.success = true;
+    setTimeout(
+      () => {
+        this.success = false;
+      }, 2000
+    );
+
   }
 
   /**

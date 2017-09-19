@@ -17,3 +17,21 @@ owl-carousel {
 .product-sizes {
   padding: 0;
 }
+
+.row {
+  position: relative;
+}
+
+.cart-alert {
+  position: absolute;
+  right: -100%;
+  transition: .3s;
+  opacity: 0;
+  top: -40px;
+
+  &.open {
+    right: 0;
+    opacity: 1;
+    transition: .3s;
+  }
+}
