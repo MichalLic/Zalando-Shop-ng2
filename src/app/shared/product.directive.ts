@@ -4,13 +4,12 @@ import {Directive, HostBinding, HostListener} from '@angular/core';
   selector: '[appProductDirective]'
 })
 export class ProductDirective {
-  @HostBinding('style.transform') scaledProduct: string = '';
+  @HostBinding('style.transform') scaledProduct: string = '1';
 
   constructor() {
   }
 
-
-  @HostListener('mouseover') mouseover() {
+  @HostListener('mouseenter') mouseover() {
     this.scaledProduct = 'scale(1.1)';
   }
 
