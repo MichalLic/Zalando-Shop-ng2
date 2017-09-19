@@ -43,6 +43,7 @@ export class UserComponent implements OnInit, OnDestroy {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+    this.productsService.getProductsAmount([]);
   }
 
   ngOnDestroy() {
