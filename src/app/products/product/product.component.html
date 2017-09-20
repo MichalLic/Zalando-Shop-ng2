@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="cart-alert" [ngClass]="{open: success}">
+    <div [@alertMessage]='state' class="cart-alert">
       <h4><span class="label label-success">Product was added to cart</span></h4>
     </div>
     <div class="col-md-6 col-xs-12">

@@ -24,14 +24,5 @@ owl-carousel {
 
 .cart-alert {
   position: absolute;
-  right: -100%;
-  transition: .3s;
-  opacity: 0;
   top: -35px;
-
-  &.open {
-    right: 0;
-    opacity: 1;
-    transition: .3s;
-  }
 }

@@ -5,11 +5,26 @@ import {Subscription} from 'rxjs/Subscription';
 import {OwlCarousel} from 'ng2-owl-carousel';
 import {ProductDetail} from '../../shared/productDetail.model';
 import {AuthService} from '../../auth/auth.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  animations: [
+    trigger('alertMessage', [
+      state('inactive', style({
+        right: '-100%',
+        opacity: '0'
+      })),
+      state('active', style({
+        right: '0',
+        opacity: '1'
+      })),
+      transition('inactive => active', animate('300ms ease-in')),
+      transition('active => inactive', animate('300ms ease-out'))
+    ])
+  ]
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('owlElement') owlElement: OwlCarousel;
@@ -22,7 +37,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   productId;
   products = [];
   addNewProduct = true;
-  success = false;
+  state: string = 'inactive';
   private subscription: Subscription;
   private productSubscription: Subscription;
   private orderedProductSubscription: Subscription;
@@ -96,10 +111,10 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.setProductsAmount(this.products);
       }
     }
-    this.success = true;
+    this.state = 'active';
     setTimeout(
       () => {
-        this.success = false;
+        this.state = 'inactive';
       }, 2000
     );
 
